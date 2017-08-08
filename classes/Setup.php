@@ -54,7 +54,7 @@ class Setup {
 
 		self::buildApiUrl( $parameters );
 
-		$data = self:callApi();
+		$data = self::callApi();
 
 		ob_start();
 
@@ -84,7 +84,7 @@ class Setup {
 	 * @since 1.0
 	 * @author Tyler Steinhaus
 	 */
-	static private function callApi( $parameters ) {
+	static private function callApi() {
 		$api_url = self::$apiurl;
 
 		$request = wp_remote_get( $api_url );

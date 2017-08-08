@@ -22,4 +22,4 @@ define( 'FANTRAX_BASENAME', plugin_basename( FANTRAX__FILE__ ) );
 
 require FANTRAX_ABSPATH . 'classes/Setup.php';
 
-add_action( 'init', array( '\Fratrax\Setup', 'init' ) );
+add_action( 'init', array( '\Fantrax\Setup', 'init' ) );
