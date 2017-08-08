@@ -4,15 +4,7 @@
             <th>Rk</th>
             <th>Player</th>
             <th>POS</th>
-            <th>
-                <?php
-                if( in_array( $atts['order'], array( 'NAME', 'ADP', 'name', 'adp' ) ) ) {
-                    echo 'ADP';
-                } elseif( in_array( $atts['order'], array( 'NAME', 'ADP_PPR', 'name', 'adp_ppr' ) ) ) {
-                    echo 'ADP_PPR';
-                }
-                ?>
-            </th>
+            <th>ADP</th>
         </tr>
     </thead>
     <tbody>
