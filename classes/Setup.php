@@ -65,9 +65,9 @@ class Setup {
 
 		wp_enqueue_style( 'fantrax-adp-style' );
 
-		self::buildApiUrl( $atts );
+		$url = self::buildApiUrl( $atts );
 
-		$data = self::callApi();
+		$data = self::callApi( $url );
 
 		ob_start();
 
@@ -87,7 +87,7 @@ class Setup {
 
 		$encode_parameters = http_build_query( $parameters );
 
-		self::$apiurl = self::$apiurl . $encode_parameters;
+		return self::$apiurl . $encode_parameters;
 	}
 
 	/**
@@ -97,9 +97,8 @@ class Setup {
 	 * @since 1.0
 	 * @author Tyler Steinhaus
 	 */
-	static private function callApi() {
-		$api_url = self::$apiurl;
-
+	static private function callApi( $api_url ) {
+		
 		$request = wp_remote_get( $api_url );
 
 		if( !empty( json_decode( $request['body'] ) ) ) {
