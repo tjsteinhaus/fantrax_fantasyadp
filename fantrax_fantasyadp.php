@@ -17,6 +17,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
 // Define certain plugin variables as constants.
 define( 'FANTRAX_ABSPATH', plugin_dir_path( __FILE__ ) );
+define( 'FANTRAX_RELPATH', plugin_dir_url( __FILE__ ) );
 define( 'FANTRAX__FILE__', __FILE__ );
 define( 'FANTRAX_BASENAME', plugin_basename( FANTRAX__FILE__ ) );
 

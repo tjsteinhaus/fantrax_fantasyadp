@@ -9,7 +9,7 @@ class Setup {
 	 *
 	 * @var string
 	 */
-	private static $apiurl = '';
+	private static $apiurl = 'https://www.fantrax.com/fxea/general/getAdp?';
 
 	/**
 	 * Shortcode Name
@@ -32,6 +32,18 @@ class Setup {
 	 */
 	static public function init() {
 		add_shortcode( self::$shortcode, array( __CLASS__, 'buildShortcodeOutput' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueScriptsAndStyles' ) );
+	}
+
+	/**
+	 * Enqueue the styles and scripts that are needed
+	 * to output the table
+	 *
+	 * @since 1.0
+	 * @author Tyler Steinhaus
+	 */
+	static public function enqueueScriptsAndStyles() {
+		wp_register_style( 'fantrax-adp-style', FANTRAX_RELPATH . 'assets/css/style.css', null, true );
 	}
 
 	/**
@@ -45,14 +57,15 @@ class Setup {
 
 		$atts = shortcode_atts( array(
 			'sport' => 'NFL',
-			'position' => 'QB',
+			'position' => '',
 			'limit' => '100',
 			'start' => '0',
-			'order' => 'ASC',
-			'orderby' => 'player_name'
+			'order' => 'ADP', // ADP, ADP_PPR, NAME
 		), $atts );
 
-		self::buildApiUrl( $parameters );
+		wp_enqueue_style( 'fantrax-adp-style' );
+
+		self::buildApiUrl( $atts );
 
 		$data = self::callApi();
 
@@ -89,7 +102,14 @@ class Setup {
 
 		$request = wp_remote_get( $api_url );
 
-		return $request;
+		if( !empty( json_decode( $request['body'] ) ) ) {
+
+			$request = json_decode( $request['body'] );
+
+			return $request;
+		} else {
+			return 'There was no data in the feed.';
+		}
 	}
 
 
