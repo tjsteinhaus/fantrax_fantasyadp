@@ -69,6 +69,10 @@ class Setup {
 
 		$data = self::callApi( $url );
 
+		if( !$data ) {
+			return 'The data doesn\'t exist in the api.';
+		}
+
 		ob_start();
 
 		require FANTRAX_ABSPATH . 'views/table_output.php';
@@ -99,15 +103,15 @@ class Setup {
 	 */
 	static private function callApi( $api_url ) {
 
-		$request = wp_remote_get( $api_url );
+		$request = file_get_contents( $api_url );
 
-		if( !empty( json_decode( $request['body'] ) ) ) {
+		if( !empty( json_decode( $request ) ) ) {
 
-			$request = json_decode( $request['body'] );
+			$request = json_decode( $request );
 
 			return $request;
 		} else {
-			return 'There was no data in the feed.';
+			return false;
 		}
 	}
 
