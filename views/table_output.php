@@ -10,7 +10,7 @@
     <tbody>
     <?php
     if( !empty( $data ) ) {
-        $i = 1;
+        $i = ( $atts['start'] == 0 ) ? 1 : $atts['start'];
         foreach( $data as $player ) {
             $class = ( $i % 2 == 0 ) ? 'even' : 'odd';
             if( in_array( $atts['order'], array( 'NAME', 'ADP', 'name', 'adp' ) ) && !empty( $player->ADP ) ) {
