@@ -5,3 +5,11 @@
     margin-bottom: 1em;
     border: none;
 }
+
+.fantrax_fantasyadp thead th {
+    background-color: #d9edf7;
+    font-weight: 700;
+    vertical-align: middle;
+    text-align: left;
+    float: none!important;
+}
