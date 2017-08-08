@@ -98,7 +98,7 @@ class Setup {
 	 * @author Tyler Steinhaus
 	 */
 	static private function callApi( $api_url ) {
-		
+
 		$request = wp_remote_get( $api_url );
 
 		if( !empty( json_decode( $request['body'] ) ) ) {
