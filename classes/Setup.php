@@ -103,11 +103,12 @@ class Setup {
 	 */
 	static private function callApi( $api_url ) {
 
-		$request = file_get_contents( $api_url );
+		$request = wp_remote_get( $api_url );
+		$body = wp_remote_retrieve_body( $request )
 
-		if( !empty( json_decode( $request ) ) ) {
+		if( !empty( $body ) ) {
 
-			$request = json_decode( $request );
+			$request = json_decode( $request['body'] );
 
 			return $request;
 		} else {
