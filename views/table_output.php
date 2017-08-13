@@ -1,3 +1,6 @@
+<div class="adp_download_links">
+	<a href="<?php echo $print_url; ?>" target="_blank">Print</a> | <a href="<?php echo $csv_url; ?>" target="_blank">Download CSV</a>
+</div>
 <table id="fantrax_fantasyadp" class="fantrax_fantasyadp tablesorter">
     <thead>
         <tr>

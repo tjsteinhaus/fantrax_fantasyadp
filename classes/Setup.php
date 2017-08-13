@@ -19,6 +19,22 @@ class Setup {
 	private static $shortcode = 'fantrax_table';
 
 	/**
+	 * Print Friendly URL Parameter
+	 *
+	 * @var string
+	 * @since 1.1
+	 */
+	public static $print_parameter = 'printfriendly';
+
+	/**
+	 * CSV Download URL Parameter
+	 *
+	 * @var string
+	 * @since 1.1
+	 */
+	public static $csv_parameter = 'csvdownload';
+
+	/**
 	 * Setup constructor.
 	 */
 	private function __construct() {}
@@ -66,6 +82,8 @@ class Setup {
 		wp_enqueue_style( 'fantrax-adp-style' );
 
 		$url = self::buildApiUrl( $atts );
+		$print_url = self::buildPrintUrl( $atts );
+		$csv_url = self::buildCsvDownloadUrl( $atts );
 
 		$data = self::callApi( $url );
 
@@ -87,11 +105,47 @@ class Setup {
 	 * @since 1.0
 	 * @author Tyler Steinhaus
 	 */
-	static private function buildApiUrl( $parameters ) {
+	static protected function buildApiUrl( $parameters ) {
 
 		$encode_parameters = http_build_query( $parameters );
 
 		return self::$apiurl . $encode_parameters;
+	}
+
+	/**
+	 * Build Print URL with given parameters
+	 *
+	 * @since 1.1
+	 * @author Tyler Steinhaus
+	 */
+	static private function buildPrintUrl( $parameters ) {
+		$encode_parameters = http_build_query( $parameters );
+
+		$permalink = get_permalink();
+
+		if( strpos( $permalink, '?' ) ) {
+			return $permalink . '&' . self::$print_parameter . '=true&' . $encode_parameters;
+		} else {
+			return $permalink . '?' . self::$print_parameter . '=true&' . $encode_parameters;
+		}
+	}
+
+	/**
+	 * Build Print URL with given parameters
+	 *
+	 * @since 1.1
+	 * @author Tyler Steinhaus
+	 */
+	static private function buildCsvDownloadUrl( $parameters ) {
+		$encode_parameters = http_build_query( $parameters );
+
+		$permalink = get_permalink();
+
+		if( strpos( $permalink, '?' ) ) {
+			return $permalink . '&' . self::$csv_parameter . '=true&' . $encode_parameters;
+		} else {
+			return $permalink . '?' . self::$csv_parameter . '=true&' . $encode_parameters;
+		}
 	}
 
 	/**
@@ -101,10 +155,10 @@ class Setup {
 	 * @since 1.0
 	 * @author Tyler Steinhaus
 	 */
-	static private function callApi( $api_url ) {
+	static protected function callApi( $api_url ) {
 
 		$request = wp_remote_get( $api_url );
-		$body = wp_remote_retrieve_body( $request )
+		$body = wp_remote_retrieve_body( $request );
 
 		if( !empty( $body ) ) {
 
