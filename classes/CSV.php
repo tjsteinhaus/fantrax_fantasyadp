@@ -65,7 +65,7 @@ class CSV extends Setup {
 						$csv .= "\r\n";
 						$i++;
 					} elseif( in_array( $atts['order'], array( 'NAME', 'ADP_PPR', 'name', 'adp_ppr' ) ) && !empty( $player->ADP_PPR ) ) {
-						$csv .= '"'.$i.'"';
+						$csv .= '"'.$i.'",';
 						$csv .= '"'.$player->name.'",';
 						$csv .= '"'.$player->pos.'",';
 						$csv .= '"'.$player->ADP_PPR.'",';
