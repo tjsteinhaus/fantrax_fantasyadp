@@ -1,5 +1,6 @@
 <div class="adp_download_links">
-	<a href="<?php echo $print_url; ?>" target="_blank">Print</a> | <a href="<?php echo $csv_url; ?>" target="_blank">Download CSV</a>
+	<a href="<?php echo $print_url; ?>" target="_blank" title="Print"><i class="material-icons">local_printshop</i></a>
+	<a href="<?php echo $csv_url; ?>" target="_blank" title="CSV Download"><i class="material-icons">file_download</i></a>
 </div>
 <table id="fantrax_fantasyadp" class="fantrax_fantasyadp tablesorter">
     <thead>
@@ -20,7 +21,7 @@
 	            ?>
                 <tr class="<?php echo $class; ?>">
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $player->name; ?></td>
+					<td><a href="https://www.fantrax.com/newui/playerProfile.go?pId=<?php echo $player->id; ?>" target="_blank"><?php echo $player->name; ?></a></td>
                     <td><?php echo $player->pos; ?></td>
                     <td><?php echo $player->ADP; ?></td>
                 </tr>

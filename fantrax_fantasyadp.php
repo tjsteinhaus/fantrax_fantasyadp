@@ -3,7 +3,7 @@
 Plugin Name: Fantrax Fantasy ADP
 Plugin URI: https://fantrax.com
 Description: Allows Fantrax to embed tables with sports data from their api
-Version: 1.1
+Version: 1.2
 Author: Tyler Steinhaus
 Author URI: https://tylersteinhaus.com
 Author email: tjsteinhaus@gmail.com
