@@ -31,7 +31,7 @@
 	            ?>
                 <tr class="<?php echo $class; ?>">
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $player->name; ?></td>
+                    <td><a href="https://www.fantrax.com/newui/playerProfile.go?pId=<?php echo $player->id; ?>" target="_blank"><?php echo $player->name; ?></a></td>
                     <td><?php echo $player->pos; ?></td>
                     <td><?php echo $player->ADP_PPR; ?></td>
                 </tr>
